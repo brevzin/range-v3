@@ -553,7 +553,7 @@ namespace ranges
         friend range_access;
         CPP_assert((Cat & category::forward) == category::forward);
 
-        any_view() = default;
+        // any_view() = default;
         template(typename Rng)(
             /// \pre
             requires //
@@ -619,7 +619,7 @@ namespace ranges
     {
         friend range_access;
 
-        any_view() = default;
+        // any_view() = default;
         template(typename Rng)(
             /// \pre
             requires //

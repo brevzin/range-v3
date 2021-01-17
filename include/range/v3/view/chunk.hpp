@@ -215,7 +215,7 @@ namespace ranges
         }
 
     public:
-        chunk_view_() = default;
+        // chunk_view_() = default;
         constexpr chunk_view_(Rng rng, range_difference_t<Rng> n)
           : chunk_view_::view_adaptor(detail::move(rng))
           , n_((RANGES_EXPECT(0 < n), n))
@@ -386,6 +386,7 @@ namespace ranges
         }
 
     public:
+        // NB: this one stays defaulted
         chunk_view_() = default;
         constexpr chunk_view_(Rng rng, range_difference_t<Rng> n)
           : base_(detail::move(rng))
@@ -416,7 +417,7 @@ namespace ranges
     template<typename Rng>
     struct chunk_view : chunk_view_<Rng, (bool)forward_range<Rng>>
     {
-        chunk_view() = default;
+        // chunk_view() = default;
         constexpr chunk_view(Rng rng, range_difference_t<Rng> n)
           : chunk_view_<Rng, (bool)forward_range<Rng>>(static_cast<Rng &&>(rng), n)
         {}

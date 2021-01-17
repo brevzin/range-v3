@@ -74,7 +74,7 @@ namespace ranges
         }
 
     public:
-        reverse_view() = default;
+        // reverse_view() = default;
         constexpr explicit reverse_view(Rng rng)
           : rng_(detail::move(rng))
         {}
@@ -127,7 +127,7 @@ namespace ranges
             same_as<detail::decay_t<decltype(std::declval<reverse_view<Rng>>().base())>,
                     Rng>);
 
-        reverse_view() = default;
+        // reverse_view() = default;
         constexpr explicit reverse_view(reverse_view<Rng> rng)
           : Rng(rng.base())
         {}

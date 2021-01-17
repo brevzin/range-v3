@@ -52,7 +52,7 @@ namespace ranges
         CPP_assert(bidirectional_range<Rng> && view_<Rng> && indirect_unary_predicate<
                    Pred, iterator_t<Rng>> && common_range<Rng>);
 
-        trim_view() = default;
+        // trim_view() = default;
         constexpr trim_view(Rng rng, Pred pred)
           : rng_(std::move(rng))
           , pred_(std::move(pred))

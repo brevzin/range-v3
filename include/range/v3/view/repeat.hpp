@@ -91,7 +91,7 @@ namespace ranges
         }
 
     public:
-        repeat_view() = default;
+        // repeat_view() = default;
         constexpr explicit repeat_view(Val value)
           : value_(detail::move(value))
         {}

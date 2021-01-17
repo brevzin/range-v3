@@ -304,7 +304,7 @@ namespace ranges
         {}
 
     public:
-        closed_iota_view() = default;
+        // closed_iota_view() = default;
         constexpr closed_iota_view(meta::id_t<From> from, meta::id_t<To> to)
           : from_(std::move(from))
           , to_(std::move(to))
@@ -453,7 +453,7 @@ namespace ranges
 #ifdef RANGES_WORKAROUND_MSVC_934264
         constexpr
 #endif // RANGES_WORKAROUND_MSVC_934264
-            iota_view() = default;
+            // iota_view() = default;
         constexpr explicit iota_view(From from)
           : from_(std::move(from))
         {}
@@ -553,7 +553,7 @@ namespace ranges
         ///
         struct ints_fn : iota_view<int>
         {
-            ints_fn() = default;
+            constexpr ints_fn() : iota_view<int>(0) { }
 
             template(typename Val)(
                 /// \pre

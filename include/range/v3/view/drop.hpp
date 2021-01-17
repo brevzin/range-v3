@@ -78,7 +78,7 @@ namespace ranges
         }
 
     public:
-        drop_view() = default;
+        // drop_view() = default;
         drop_view(Rng rng, difference_type_ n)
           : rng_(std::move(rng))
           , n_(n)

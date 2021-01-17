@@ -153,7 +153,7 @@ namespace ranges
         }
 
     public:
-        partial_sum_view() = default;
+        // partial_sum_view() = default;
         constexpr partial_sum_view(Rng rng, Fun fun) noexcept(
             std::is_nothrow_move_constructible<Rng>::value &&
                 std::is_nothrow_move_constructible<Fun>::value)

@@ -76,6 +76,7 @@ namespace ranges
             }
 
         public:
+            // NB: this one stays defaulted
             constexpr linear_distribute_view() = default;
             constexpr linear_distribute_view(T from, T to__, std::ptrdiff_t n) noexcept
               : from_(from)

@@ -56,7 +56,7 @@ namespace ranges
         }
 
     public:
-        drop_while_view() = default;
+        // drop_while_view() = default;
         drop_while_view(Rng rng, Pred pred)
           : rng_(std::move(rng))
           , pred_(std::move(pred))

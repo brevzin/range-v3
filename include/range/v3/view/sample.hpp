@@ -184,7 +184,7 @@ namespace ranges
         }
 
     public:
-        sample_view() = default;
+        // sample_view() = default;
 
         explicit sample_view(Rng rng, D sample_size, URNG & generator)
           : rng_(std::move(rng))

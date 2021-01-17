@@ -278,7 +278,7 @@ namespace ranges
         }
 
     public:
-        stride_view() = default;
+        // stride_view() = default;
         constexpr stride_view(Rng rng, range_difference_t<Rng> const stride)
           : detail::stride_view_base<Rng>{std::move(rng), stride}
         {}

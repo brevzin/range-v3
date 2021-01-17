@@ -55,7 +55,7 @@ namespace ranges
         Rng rng_;
 
     public:
-        tail_view() = default;
+        // tail_view() = default;
         tail_view(Rng rng)
           : rng_(static_cast<Rng &&>(rng))
         {

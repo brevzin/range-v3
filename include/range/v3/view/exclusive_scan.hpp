@@ -132,7 +132,7 @@ namespace ranges
         }
 
     public:
-        exclusive_scan_view() = default;
+        // exclusive_scan_view() = default;
         constexpr exclusive_scan_view(Rng rng, T init, Fun fun)
           : exclusive_scan_view::view_adaptor{std::move(rng)}
           , init_(std::move(init))

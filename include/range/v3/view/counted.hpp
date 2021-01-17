@@ -40,7 +40,7 @@ namespace ranges
         iter_difference_t<I> n_;
 
     public:
-        counted_view() = default;
+        // counted_view() = default;
         counted_view(I it, iter_difference_t<I> n)
           : it_(it)
           , n_(n)

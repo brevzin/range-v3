@@ -80,7 +80,7 @@ namespace ranges
         template<typename Inner>
         struct store_inner_
         {
-            views::all_t<Inner> inner_ = views::all_t<Inner>();
+            semiregular_box<views::all_t<Inner>> inner_;
 
             constexpr views::all_t<Inner> & update_inner_(Inner && inner)
             {
@@ -142,7 +142,7 @@ namespace ranges
         CPP_assert(std::is_reference<range_reference_t<Rng>>::value ||
                    view_<range_reference_t<Rng>>);
 
-        join_view() = default;
+        // join_view() = default;
         explicit join_view(Rng rng)
           : outer_(views::all(std::move(rng)))
         {}
@@ -365,7 +365,7 @@ namespace ranges
         CPP_assert(semiregular<common_type_t<range_value_t<range_reference_t<Rng>>,
                                              range_value_t<ValRng>>>);
 
-        join_with_view() = default;
+        // join_with_view() = default;
         join_with_view(Rng rng, ValRng val)
           : outer_(views::all(std::move(rng)))
           , val_(views::all(std::move(val)))
@@ -398,9 +398,9 @@ namespace ranges
         // Intentionally promote xvalues to lvalues here:
         using Inner = views::all_t<range_reference_t<Outer> &>;
 
-        Outer outer_{};
-        Inner inner_{};
-        views::all_t<ValRng> val_{};
+        Outer outer_;
+        semiregular_box<Inner> inner_;
+        views::all_t<ValRng> val_;
 
         class cursor
         {
@@ -419,11 +419,11 @@ namespace ranges
                         // Intentionally promote xvalues to lvalues here:
                         auto && tmp = *outer_it_;
                         rng_->inner_ = views::all(tmp);
-                        ranges::emplace<1>(cur_, ranges::begin(rng_->inner_));
+                        ranges::emplace<1>(cur_, ranges::begin(rng_->inner_.get()));
                     }
                     else
                     {
-                        if(ranges::get<1>(cur_) != ranges::end(rng_->inner_))
+                        if(ranges::get<1>(cur_) != ranges::end(rng_->inner_.get()))
                             break;
                         if(++outer_it_ == ranges::end(rng_->outer_))
                             break;
@@ -449,7 +449,7 @@ namespace ranges
                     // Intentionally promote xvalues to lvalues here:
                     auto && tmp = *outer_it_;
                     rng->inner_ = views::all(tmp);
-                    ranges::emplace<1>(cur_, ranges::begin(rng->inner_));
+                    ranges::emplace<1>(cur_, ranges::begin(rng->inner_.get()));
                     satisfy();
                 }
             }
@@ -469,7 +469,7 @@ namespace ranges
                 else
                 {
                     auto & it = ranges::get<1>(cur_);
-                    RANGES_ASSERT(it != ranges::end(rng_->inner_));
+                    RANGES_ASSERT(it != ranges::end(rng_->inner_.get()));
                     ++it;
                 }
                 satisfy();

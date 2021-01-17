@@ -42,7 +42,7 @@ namespace ranges
                      is_finite<Rng>::value ? finite : range_cardinality<Rng>::value>
       , private box<semiregular_box_t<Pred>, adjacent_remove_if_view<Rng, Pred>>
     {
-        adjacent_remove_if_view() = default;
+        // adjacent_remove_if_view() = default;
         constexpr adjacent_remove_if_view(Rng rng, Pred pred)
           : adjacent_remove_if_view::view_adaptor{detail::move(rng)}
           , adjacent_remove_if_view::box(detail::move(pred))

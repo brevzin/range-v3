@@ -85,7 +85,7 @@ namespace ranges
         }
 
     public:
-        iter_take_while_view() = default;
+        // iter_take_while_view() = default;
         constexpr iter_take_while_view(Rng rng, Pred pred)
           : iter_take_while_view::view_adaptor{std::move(rng)}
           , pred_(std::move(pred))
@@ -95,7 +95,7 @@ namespace ranges
     template<typename Rng, typename Pred>
     struct take_while_view : iter_take_while_view<Rng, indirected<Pred>>
     {
-        take_while_view() = default;
+        // take_while_view() = default;
         constexpr take_while_view(Rng rng, Pred pred)
           : iter_take_while_view<Rng, indirected<Pred>>{std::move(rng),
                                                         indirect(std::move(pred))}

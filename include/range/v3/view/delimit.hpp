@@ -63,7 +63,7 @@ namespace ranges
         }
 
     public:
-        delimit_view() = default;
+        // delimit_view() = default;
         constexpr delimit_view(Rng rng, Val value)
           : delimit_view::view_adaptor{std::move(rng)}
           , value_(std::move(value))

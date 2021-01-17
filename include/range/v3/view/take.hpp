@@ -152,7 +152,7 @@ namespace ranges
         }
 #endif
     public:
-        take_view() = default;
+        // take_view() = default;
 
         constexpr take_view(Rng base, range_difference_t<Rng> cnt)
           : base_(std::move(base))

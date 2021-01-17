@@ -79,7 +79,7 @@ namespace ranges
         }
 
     public:
-        generate_view() = default;
+        // generate_view() = default;
         explicit generate_view(G g)
           : gen_(std::move(g))
         {}

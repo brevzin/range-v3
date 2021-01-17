@@ -44,7 +44,7 @@ namespace ranges
                          ? static_cast<cardinality>(range_cardinality<Rng>::value * 2 - 1)
                          : range_cardinality<Rng>::value>
     {
-        intersperse_view() = default;
+        // intersperse_view() = default;
         constexpr intersperse_view(Rng rng, range_value_t<Rng> val)
           : intersperse_view::view_adaptor{detail::move(rng)}
           , val_(detail::move(val))

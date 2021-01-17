@@ -32,7 +32,7 @@ namespace ranges
         /// Half-open range of indices: [from, to).
         struct indices_fn : iota_view<std::size_t>
         {
-            indices_fn() = default;
+            constexpr indices_fn() : iota_view<std::size_t>(0) { }
 
             template(typename Val)(
                 /// \pre

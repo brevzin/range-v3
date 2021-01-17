@@ -101,7 +101,7 @@ namespace ranges
         }
 
     public:
-        indirect_view() = default;
+        // indirect_view() = default;
         constexpr explicit indirect_view(Rng rng)
           : indirect_view::view_adaptor{detail::move(rng)}
         {}

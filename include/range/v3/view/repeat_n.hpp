@@ -94,7 +94,7 @@ namespace ranges
         }
 
     public:
-        repeat_n_view() = default;
+        // repeat_n_view() = default;
         constexpr repeat_n_view(Val value, std::ptrdiff_t n)
           : value_(detail::move(value))
           , n_((RANGES_EXPECT(0 <= n), n))

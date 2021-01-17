@@ -31,7 +31,7 @@ namespace ranges
         I it_;
 
     public:
-        unbounded_view() = default;
+        // unbounded_view() = default;
         constexpr explicit unbounded_view(I it)
           : it_(detail::move(it))
         {}

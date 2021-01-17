@@ -91,7 +91,7 @@ namespace ranges
         }
 
     public:
-        const_view() = default;
+        // const_view() = default;
         explicit const_view(Rng rng)
           : const_view::view_adaptor{std::move(rng)}
         {}

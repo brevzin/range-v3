@@ -148,7 +148,7 @@ namespace ranges
         }
 
     public:
-        split_when_view() = default;
+        // split_when_view() = default;
         split_when_view(Rng rng, Fun fun)
           : rng_(std::move(rng))
           , fun_(std::move(fun))

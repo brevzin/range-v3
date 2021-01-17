@@ -199,7 +199,7 @@ namespace ranges
         }
 
     public:
-        cycled_view() = default;
+        // cycled_view() = default;
         /// \pre <tt>!empty(rng)</tt>
         explicit cycled_view(Rng rng)
           : rng_(std::move(rng))

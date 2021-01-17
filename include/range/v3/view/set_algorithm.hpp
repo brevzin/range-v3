@@ -91,7 +91,7 @@ namespace ranges
             }
 
         public:
-            set_algorithm_view() = default;
+            // set_algorithm_view() = default;
             set_algorithm_view(Rng1 rng1, Rng2 rng2, C pred, P1 proj1, P2 proj2)
               : pred_(std::move(pred))
               , proj1_(std::move(proj1))

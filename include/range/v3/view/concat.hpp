@@ -367,7 +367,7 @@ namespace ranges
         }
 
     public:
-        concat_view() = default;
+        // concat_view() = default;
         explicit concat_view(Rngs... rngs)
           : rngs_{std::move(rngs)...}
         {}

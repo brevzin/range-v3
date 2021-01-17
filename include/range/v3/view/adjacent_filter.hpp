@@ -135,7 +135,7 @@ namespace ranges
         }
 
     public:
-        adjacent_filter_view() = default;
+        // adjacent_filter_view() = default;
         constexpr adjacent_filter_view(Rng rng, Pred pred)
           : adjacent_filter_view::view_adaptor{detail::move(rng)}
           , adjacent_filter_view::box(detail::move(pred))

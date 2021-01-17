@@ -76,7 +76,7 @@ namespace ranges
         }
 
     public:
-        getlines_view() = default;
+        // getlines_view() = default;
         getlines_view(std::istream & sin, char delim = '\n')
           : sin_(&sin)
           , str_{}

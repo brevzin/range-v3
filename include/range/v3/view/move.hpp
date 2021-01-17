@@ -85,7 +85,7 @@ namespace ranges
         }
 
     public:
-        move_view() = default;
+        // move_view() = default;
         explicit move_view(Rng rng)
           : move_view::view_adaptor{std::move(rng)}
         {}

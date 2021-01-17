@@ -87,7 +87,7 @@ namespace ranges
         }
 
     public:
-        common_view() = default;
+        // common_view() = default;
         explicit common_view(Rng rng)
           : rng_(detail::move(rng))
         {}

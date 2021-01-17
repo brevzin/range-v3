@@ -556,7 +556,7 @@ namespace ranges
 #endif
 
     public:
-        split_view() = default;
+        // split_view() = default;
 
         constexpr split_view(V base, Pattern pattern)
           : base_((V &&) base)

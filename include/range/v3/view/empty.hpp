@@ -29,7 +29,7 @@ namespace ranges
     {
         static_assert(std::is_object<T>::value,
                       "The template parameter to empty_view must be an object type.");
-        empty_view() = default;
+        // empty_view() = default;
         static constexpr T * begin() noexcept
         {
             return nullptr;

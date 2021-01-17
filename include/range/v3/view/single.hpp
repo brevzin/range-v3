@@ -54,7 +54,7 @@ namespace ranges
         {}
 
     public:
-        single_view() = default;
+        // single_view() = default;
         constexpr explicit single_view(T const & t)
           : value_(t)
         {}

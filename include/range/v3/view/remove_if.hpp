@@ -46,7 +46,7 @@ namespace ranges
                      is_finite<Rng>::value ? finite : range_cardinality<Rng>::value>
       , private box<semiregular_box_t<Pred>>
     {
-        remove_if_view() = default;
+        // remove_if_view() = default;
         constexpr remove_if_view(Rng rng, Pred pred)
           : remove_if_view::view_adaptor{detail::move(rng)}
           , remove_if_view::box(detail::move(pred))

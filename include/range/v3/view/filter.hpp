@@ -31,7 +31,7 @@ namespace ranges
     template<typename Rng, typename Pred>
     struct filter_view : remove_if_view<Rng, logical_negate<Pred>>
     {
-        filter_view() = default;
+        // filter_view() = default;
         constexpr filter_view(Rng rng, Pred pred)
           : filter_view::remove_if_view{std::move(rng), not_fn(std::move(pred))}
         {}

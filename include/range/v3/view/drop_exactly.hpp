@@ -75,7 +75,7 @@ namespace ranges
         }
 
     public:
-        drop_exactly_view() = default;
+        // drop_exactly_view() = default;
         drop_exactly_view(Rng rng, difference_type_ n)
           : rng_(std::move(rng))
           , n_(n)

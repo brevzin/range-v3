@@ -142,7 +142,7 @@ namespace ranges
         detail::non_propagating_cache<iterator_t<Rng>> end_;
 
     public:
-        drop_last_view() = default;
+        // drop_last_view() = default;
         constexpr drop_last_view(Rng rng, difference_t n)
           : rng_(std::move(rng))
           , n_(n)
@@ -252,7 +252,7 @@ namespace ranges
         }
 
     public:
-        drop_last_view() = default;
+        // drop_last_view() = default;
         constexpr drop_last_view(Rng rng, difference_t n)
           : drop_last_view::view_adaptor(std::move(rng))
           , n_(n)
@@ -289,7 +289,7 @@ namespace ranges
         difference_t n_;
 
     public:
-        drop_last_view() = default;
+        // drop_last_view() = default;
         constexpr drop_last_view(Rng rng, difference_t n)
           : rng_(std::move(rng))
           , n_(n)

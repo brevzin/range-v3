@@ -114,7 +114,7 @@ namespace ranges
     {
         CPP_assert(sizeof...(Rngs) != 0);
 
-        zip_view() = default;
+        // zip_view() = default;
         explicit zip_view(Rngs... rngs)
           : iter_zip_with_view<detail::indirect_zip_fn_, Rngs...>{
                 detail::indirect_zip_fn_{},

@@ -155,7 +155,7 @@ namespace ranges
         }
 
     public:
-        cache1_view() = default;
+        // cache1_view() = default;
         constexpr explicit cache1_view(Rng rng)
           : rng_{std::move(rng)}
         {}

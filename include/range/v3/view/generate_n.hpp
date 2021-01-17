@@ -81,7 +81,7 @@ namespace ranges
         }
 
     public:
-        generate_n_view() = default;
+        // generate_n_view() = default;
         explicit generate_n_view(G g, std::size_t n)
           : gen_(std::move(g))
           , n_(n)

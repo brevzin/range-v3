@@ -344,7 +344,7 @@ namespace ranges
         }
 
     public:
-        iter_zip_with_view() = default;
+        // iter_zip_with_view() = default;
         explicit iter_zip_with_view(Rngs... rngs)
           : fun_(Fun{})
           , rngs_{std::move(rngs)...}
@@ -375,7 +375,7 @@ namespace ranges
     {
         CPP_assert(sizeof...(Rngs) != 0);
 
-        zip_with_view() = default;
+        // zip_with_view() = default;
         explicit zip_with_view(Rngs... rngs)
           : iter_zip_with_view<indirected<Fun>, Rngs...>{{Fun{}}, std::move(rngs)...}
         {}

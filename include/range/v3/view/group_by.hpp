@@ -148,7 +148,7 @@ namespace ranges
         }
 
     public:
-        group_by_view() = default;
+        // group_by_view() = default;
         constexpr group_by_view(Rng rng, Fun fun)
           : rng_(std::move(rng))
           , fun_(std::move(fun))
