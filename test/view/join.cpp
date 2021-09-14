@@ -238,6 +238,14 @@ int main()
         CPP_assert(!common_range<decltype(rng)>);
     }
 
+    {
+        std::vector<std::string> vs{"this","is","his","face"};
+        auto rng = vs | views::join(' ');
+        check_equal(rng, std::string("this is his face"));
+        CPP_assert(input_range<decltype(rng)>);
+        CPP_assert(forward_range<decltype(rng)>);
+    }
+
     // https://github.com/ericniebler/range-v3/issues/1320
     {
         auto op = [](auto & input, int i, auto & ins)

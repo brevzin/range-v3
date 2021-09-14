@@ -102,5 +102,5 @@
     },
     "C_Cpp.configurationWarnings": "Disabled",
     "cmake.configureOnOpen": true,
-    "C_Cpp.intelliSenseEngineFallback": "Enabled"
+    "C_Cpp.intelliSenseEngineFallback": "Disabled"
 }

@@ -431,13 +431,18 @@ namespace ranges
                 }
             }
 
+            using ref_is_glvalue = std::is_reference<range_reference_t<Outer>>;
         public:
             using value_type = common_type_t<range_value_t<Inner>, range_value_t<ValRng>>;
             using reference =
                 common_reference_t<range_reference_t<Inner>, range_reference_t<ValRng>>;
             using rvalue_reference = common_reference_t<range_rvalue_reference_t<Inner>,
                                                         range_rvalue_reference_t<ValRng>>;
-            using single_pass = std::true_type;
+
+            using single_pass = meta::bool_<single_pass_iterator_<iterator_t<Outer>> ||
+                                            single_pass_iterator_<iterator_t<Inner>> ||
+                                            !ref_is_glvalue::value>;
+
             cursor() = default;
             cursor(join_with_view * rng)
               : rng_{rng}
@@ -450,9 +455,19 @@ namespace ranges
                     satisfy();
                 }
             }
-            bool equal(default_sentinel_t) const
+            constexpr bool equal(default_sentinel_t) const
             {
                 return outer_it_ == ranges::end(rng_->outer_);
+            }
+            CPP_member
+            constexpr auto equal(cursor const & that) const //
+                -> CPP_ret(bool)(
+                    /// \pre
+                    requires ref_is_glvalue::value && //
+                        equality_comparable<iterator_t<Outer>> && //
+                        equality_comparable<iterator_t<Inner>>)
+            {
+                return outer_it_ == that.outer_it_ && cur_ == that.cur_;
             }
             void next()
             {
