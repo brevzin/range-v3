@@ -9,26 +9,27 @@
 //
 // Project home: https://github.com/ericniebler/range-v3
 
-#include <iterator>
 #include <forward_list>
 #include <functional>
+#include <iterator>
 #include <vector>
 
 #include <range/v3/core.hpp>
-#include <range/v3/view/join.hpp>
-#include <range/v3/view/split.hpp>
-#include <range/v3/view/generate_n.hpp>
-#include <range/v3/view/repeat_n.hpp>
 #include <range/v3/view/chunk.hpp>
 #include <range/v3/view/concat.hpp>
-#include <range/v3/view/iota.hpp>
-#include <range/v3/view/single.hpp>
-#include <range/v3/view/transform.hpp>
 #include <range/v3/view/filter.hpp>
+#include <range/v3/view/generate_n.hpp>
+#include <range/v3/view/iota.hpp>
+#include <range/v3/view/join.hpp>
+#include <range/v3/view/repeat_n.hpp>
+#include <range/v3/view/reverse.hpp>
+#include <range/v3/view/single.hpp>
+#include <range/v3/view/split.hpp>
+#include <range/v3/view/transform.hpp>
 
 #include "../simple_test.hpp"
-#include "../test_utils.hpp"
 #include "../test_iterators.hpp"
+#include "../test_utils.hpp"
 
 RANGES_DIAGNOSTIC_IGNORE_GLOBAL_CONSTRUCTORS
 
@@ -244,6 +245,12 @@ int main()
         check_equal(rng, std::string("this is his face"));
         CPP_assert(input_range<decltype(rng)>);
         CPP_assert(forward_range<decltype(rng)>);
+        CPP_assert(bidirectional_range<decltype(rng)>);
+        check_equal(rng | views::reverse, std::string("ecaf sih si siht"));
+
+        vs[1].clear();
+        check_equal(rng, std::string("this  his face"));
+        check_equal(rng | views::reverse, std::string("ecaf sih  siht"));
     }
 
     // https://github.com/ericniebler/range-v3/issues/1320

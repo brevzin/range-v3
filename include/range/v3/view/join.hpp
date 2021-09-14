@@ -489,6 +489,52 @@ namespace ranges
                 }
                 satisfy();
             }
+            CPP_member
+            constexpr auto prev() //
+                -> CPP_ret(void)(
+                    /// \pre
+                    // clang-format off
+                    requires ref_is_glvalue::value &&
+                        bidirectional_range<Outer> &&
+                        bidirectional_range<Inner> &&
+                        common_range<Inner>) // ericniebler/stl2#606
+            // clang-format on
+            {
+                if(outer_it_ == ranges::end(rng_->outer_))
+                {
+                    ranges::emplace<1>(cur_, ranges::end(*--outer_it_));
+                }
+
+                while(true)
+                {
+                    if(cur_.index() == 0)
+                    {
+                        auto & it = ranges::get<0>(cur_);
+                        if(it == ranges::begin(rng_->val_))
+                        {
+                            ranges::emplace<1>(cur_, ranges::end(*--outer_it_));
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        auto & it = ranges::get<1>(cur_);
+                        if(it == ranges::begin(*outer_it_))
+                        {
+                            ranges::emplace<0>(cur_, ranges::end(rng_->val_));
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
+
+                cur_.visit([](auto & it) -> void { --it; });
+            }
             reference read() const
             {
                 // return visit(cur_, [](auto& it) -> reference { return *it; });
