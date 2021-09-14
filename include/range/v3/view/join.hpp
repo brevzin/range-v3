@@ -425,7 +425,11 @@ namespace ranges
                         if(ranges::get<1>(cur_) != ranges::end(inner))
                             break;
                         if(++outer_it_ == ranges::end(rng_->outer_))
+                        {
+                            if(RANGES_CONSTEXPR_IF(ref_is_glvalue::value))
+                                cur_ = {};
                             break;
+                        }
                         ranges::emplace<0>(cur_, ranges::begin(rng_->val_));
                     }
                 }
@@ -444,9 +448,10 @@ namespace ranges
                                             !ref_is_glvalue::value>;
 
             cursor() = default;
-            cursor(join_with_view * rng)
+            template<typename BeginOrEnd>
+            cursor(join_with_view * rng, BeginOrEnd begin_or_end)
               : rng_{rng}
-              , outer_it_(ranges::begin(rng->outer_))
+              , outer_it_(begin_or_end(rng->outer_))
             {
                 if(outer_it_ != ranges::end(rng->outer_))
                 {
@@ -553,9 +558,30 @@ namespace ranges
                     return iter_move(ranges::get<1>(cur_));
             }
         };
+
+        struct end_cursor_fn
+        {
+            auto operator()(join_with_view * this_, std::true_type) const
+            {
+                return cursor{this_, ranges::end};
+            }
+            auto operator()(join_with_view *, std::false_type) const
+            {
+                return default_sentinel_t{};
+            }
+        };
+
         cursor begin_cursor()
         {
-            return {this};
+            return {this, ranges::begin};
+        }
+        auto end_cursor()
+        {
+            using cond =
+                meta::bool_<std::is_reference<range_reference_t<Rng>>::value &&
+                            forward_range<Rng> && forward_range<range_reference_t<Rng>> &&
+                            common_range<Rng> && common_range<range_reference_t<Rng>>>;
+            return end_cursor_fn{}(this, cond{});
         }
     };
 

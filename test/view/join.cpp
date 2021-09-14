@@ -246,6 +246,7 @@ int main()
         CPP_assert(input_range<decltype(rng)>);
         CPP_assert(forward_range<decltype(rng)>);
         CPP_assert(bidirectional_range<decltype(rng)>);
+        CPP_assert(common_range<decltype(rng)>);
         check_equal(rng | views::reverse, std::string("ecaf sih si siht"));
 
         vs[1].clear();
